@@ -11,10 +11,16 @@
 		Background="#475562" Padding="7">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+
+	<Window.Styles>
+		<Style Selector="ListBoxItem">
+			<Setter Property="Padding" Value="13 11 0 12"/>
+			<Setter Property="Margin" Value="0 0 0 1"/>
+			<Setter Property="Background" Value="#1c242b"/>
+		</Style>
+	</Window.Styles>
 
 	<Panel>
 		<TextBlock Text="{Binding Logg}" Foreground="#8f8"/>
@@ -44,7 +50,7 @@
 			</StackPanel>
 			<Border Grid.Row="1" Padding="14 30 0 4" BorderBrush="#5c6576" BorderThickness="0 1">
 				<!-- Не могу выставить border только снизу, как в оригинальном CSS со страницы... -->
-				<Grid ColumnDefinitions="123*,157*,80*,52*,51*,136*">
+				<Grid ColumnDefinitions="123*,157*,110*,82*,78*,136*">
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center">Рейс</TextBlock>
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="1">Название</TextBlock>
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="2">По расписанию</TextBlock>
@@ -53,9 +59,31 @@
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="5">Статус</TextBlock>
 				</Grid>
 			</Border>
-			<Border Grid.Row="2">
-
-			</Border>
+			<ListBox Grid.Row="2" Background="#0000" Items="{Binding Items}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<Panel Width="123">
+								<Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding Image}"/>
+								<TextBlock Margin="23 0 0 0" FontSize="15" Foreground="White" Text="{Binding Flight}"/>
+							</Panel>
+							<Panel Width="157">
+								<TextBlock FontSize="15" Foreground="White" Text="{Binding Destination}"/>
+							</Panel>
+							<Panel Width="80" Margin="0 0 30 0">
+								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Time}"/>
+							</Panel>
+							<Panel Width="52" Margin="0 0 30 0">
+								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding TimeCount}"/>
+							</Panel>
+							<Panel Width="51" Margin="0 0 27 0">
+								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Terminal}"/>
+							</Panel>
+							<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Status}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</Grid>
 	</Panel>
 

@@ -2,6 +2,7 @@
 using ReactiveUI;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace AirportTable.ViewModels {
     public class Log {
@@ -32,9 +33,12 @@ namespace AirportTable.ViewModels {
         private string log = "";
         public string Logg { get => log; set { this.RaiseAndSetIfChanged(ref log, value); } }
 
+        BaseReader br = new();
+
         public MainWindowViewModel() {
             Log.Mwvm = this;
-            new BaseReader();
         }
+
+        public TableItem[] Items { get => br.data[0].Select(x => new TableItem((object[]) x, br)).ToArray(); }
     }
 }

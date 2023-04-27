@@ -32,7 +32,7 @@ namespace AirportTable.Models {
         }
 
         public static Bitmap Base64toBitmap(this string data) {
-            byte[] bytes = Convert.FromBase64String(data.Split(',', 2)[1]);
+            byte[] bytes = Convert.FromBase64String(data.Split(";base64,", 2)[1]);
             Stream stream = new MemoryStream(bytes);
             return new Bitmap(stream);
         }
