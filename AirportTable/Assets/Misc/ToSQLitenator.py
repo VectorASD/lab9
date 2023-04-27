@@ -21,8 +21,8 @@ res = cur.execute("""CREATE TABLE images (
 def escape(s): return '"' + s.replace('"', '""') + '"'
 
 storage, renamer = {}, {}
-for day in range(3):
-  names = ("yeah_timetable_вчера.zip", "yeah_timetable_сегодня.zip", "yeah_timetable_завтра.zip")
+for day in range(4):
+  names = ("yeah_timetable_вчера.zip", "yeah_timetable_сегодня.zip", "yeah_timetable_завтра.zip", "yeah_timetable_новое_завтра.zip")
   with ZipFile(names[day], "r") as zip:
     data = json.loads(zip.read("yeah.json"))
     images = json.loads(zip.read("images.json"))
