@@ -51,7 +51,7 @@
 				<!-- Не могу выставить border только снизу, как в оригинальном CSS с той самой страницы... -->
 				<Grid ColumnDefinitions="123*,157*,110*,82*,78*,136*">
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center">Рейс</TextBlock>
-					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="1">Название</TextBlock>
+					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="1" Text="{Binding ColumnText}"/>
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="2">По расписанию</TextBlock>
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="3">Расчётное</TextBlock>
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="4">Сектор</TextBlock>

@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
 using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,6 +51,11 @@ namespace AirportTable.ViewModels {
             SelectE = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectE(); return new Unit(); });
         }
 
+        string column_text = "Назначение";
+        public string ColumnText { get => column_text; set { this.RaiseAndSetIfChanged(ref column_text, value); } }
+
+
+
         Button? button_a, button_b, button_c, button_d, button_e;
         public void AddWindow(Window mw) {
             button_a = mw.Find<Button>("Button_A");
@@ -58,7 +64,7 @@ namespace AirportTable.ViewModels {
             button_d = mw.Find<Button>("Button_D");
             button_e = mw.Find<Button>("Button_E");
             SetButtonState(0, true);
-            SetButtonState2(0, true);
+            SetButtonState2(1, true);
         }
 
         private void SetButtonState(int num, bool state) {
@@ -96,13 +102,14 @@ namespace AirportTable.ViewModels {
             selected = newy;
             SetButtonState(0, !newy);
             SetButtonState(1, newy);
+            ColumnText = newy ? "Пункт вылета" : "Назначение";
         }
         void FuncSelectA() => SelectButton(false);
         void FuncSelectB() => SelectButton(true);
         public ReactiveCommand<Unit, Unit> SelectA { get; }
         public ReactiveCommand<Unit, Unit> SelectB { get; }
 
-        int selected2 = 0;
+        int selected2 = 1;
         void SelectButton2(int newy) {
             if (selected2 == newy) return;
             selected2 = newy;
