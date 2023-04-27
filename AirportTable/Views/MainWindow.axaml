@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AirportTable.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="720" d:DesignHeight="1000"
+		Width="720" Height="1000"
+        x:Class="AirportTable.Views.MainWindow"
+        Icon="/Assets/vectorasd-logo.ico"
+        Title="AirportTable"
+		Background="#475562" Padding="7">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid RowDefinitions="auto,auto,*">
+		<StackPanel Orientation="Horizontal">
+			<Button Width="150" Height="48" Margin="0 0 7 0" CornerRadius="2" Background="#323B44" Padding="0">
+				<Canvas>
+					<Image Source="/Assets/departure_A.png" Width="31" Height="24" Margin="15 10 0 0"/>
+					<TextBlock Foreground="#6F788B" FontSize="19" Margin="60 12 0 0" FontWeight="Bold">Вылет</TextBlock>
+				</Canvas>
+			</Button>
+		</StackPanel>
+		<Border Grid.Row="1" Background="Yellow" Padding="15 30 0 4">
+
+		</Border>
+		<Border Grid.Row="2" Background="Green">
+
+		</Border>
+	</Grid>
+
+</Window>
