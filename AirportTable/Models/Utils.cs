@@ -12,6 +12,7 @@ using System.Collections;
 using System.Diagnostics;
 using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.IO;
 
 namespace AirportTable.Models {
     public static class Utils {
@@ -23,11 +24,17 @@ namespace AirportTable.Models {
 
         public static string Base64Encode(string plainText) {
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
+            return Convert.ToBase64String(plainTextBytes);
         }
         public static string Base64Decode(string base64EncodedData) {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
             return Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public static Bitmap Base64toBitmap(this string data) {
+            byte[] bytes = Convert.FromBase64String(data.Split(',', 2)[1]);
+            Stream stream = new MemoryStream(bytes);
+            return new Bitmap(stream);
         }
 
         /*
@@ -103,7 +110,7 @@ namespace AirportTable.Models {
         private static object? JsonHandler(object? obj) {
             if (obj == null) return null;
 
-            if (obj is List<object?> @list) return @list.Select(JsonHandler).ToArray();
+            if (obj is object?[] @list) return @list.Select(JsonHandler).ToArray();
             if (obj is Dictionary<string, object?> @dict) {
                 return new Dictionary<string, object?>(@dict.Select(pair => new KeyValuePair<string, object?>(pair.Key, JsonHandler(pair.Value))));
             }
