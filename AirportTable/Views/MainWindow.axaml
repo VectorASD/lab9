@@ -58,27 +58,50 @@
 					<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="5">Статус</TextBlock>
 				</Grid>
 			</Border>
-			<ListBox Grid.Row="2" Background="#0000" Items="{Binding Items}">
+			<ListBox Grid.Row="2" Background="#0000" Items="{Binding Items}" PointerReleased="Released">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Orientation="Horizontal">
-							<Panel Width="123">
-								<Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding Image}"/>
-								<TextBlock Margin="23 0 0 0" FontSize="15" Foreground="White" Text="{Binding Flight}"/>
-							</Panel>
-							<Panel Width="157">
-								<TextBlock FontSize="15" Foreground="White" Text="{Binding Destination}"/>
-							</Panel>
-							<Panel Width="80" Margin="0 0 30 0">
-								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Time}"/>
-							</Panel>
-							<Panel Width="52" Margin="0 0 30 0">
-								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding TimeCount}"/>
-							</Panel>
-							<Panel Width="51" Margin="0 0 27 0">
-								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Terminal}"/>
-							</Panel>
-							<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Status}"/>
+						<StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Panel Width="123">
+									<Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding Image}"/>
+									<TextBlock Margin="23 0 0 0" FontSize="15" Foreground="White" Text="{Binding Flight}"/>
+								</Panel>
+								<Panel Width="157">
+									<TextBlock FontSize="15" Foreground="White" Text="{Binding Destination}"/>
+								</Panel>
+								<Panel Width="80" Margin="0 0 30 0">
+									<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Time}"/>
+								</Panel>
+								<Panel Width="52" Margin="0 0 30 0">
+									<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding TimeCount}"/>
+								</Panel>
+								<Panel Width="51" Margin="0 0 27 0">
+									<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Terminal}"/>
+								</Panel>
+								<TextBlock FontSize="15" Foreground="White" HorizontalAlignment="Right" Text="{Binding Status}"/>
+							</StackPanel>
+							<Border IsVisible="{Binding Visible}" Height="1" Background="#eb7501" Margin="-13 12 0 0"/>
+							<StackPanel IsVisible="{Binding Visible}" Orientation="Horizontal">
+								<Image Margin="0 16 0 0" Width="80" Height="80" Source="{Binding BigImage}"/>
+								<Panel Margin="44 11 0 0" Width="570">
+									<TextBlock FontSize="15" Foreground="White" Text="{Binding Path}"/>
+									<ItemsControl Margin="0 30 0 0" Items="{Binding Description}">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<Border Margin="0 0 10 0" Padding="8">
+													<TextBlock Foreground="#d5d9e3" FontSize="13" Text="{Binding}"/>
+												</Border>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+										<ItemsControl.ItemsPanel>
+											<ItemsPanelTemplate>
+												<WrapPanel/>
+											</ItemsPanelTemplate>
+										</ItemsControl.ItemsPanel>
+									</ItemsControl>
+								</Panel>
+							</StackPanel>
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

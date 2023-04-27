@@ -1,8 +1,9 @@
-﻿using AirportTable.ViewModels;
-using Avalonia.Media.Imaging;
+﻿using Avalonia.Media.Imaging;
+using ReactiveUI;
+using System.Linq;
 
 namespace AirportTimeTable.Models {
-    public class TableItem {
+    public class TableItem: ReactiveObject {
         public Bitmap Image { get; }
         public string Flight { get; }
         public string Destination { get; }
@@ -14,6 +15,8 @@ namespace AirportTimeTable.Models {
         public Bitmap BigImage { get; }
         public string Path { get; }
         public bool IsDeparture { get; }
+        public string[] Description { get; }
+        public bool Visible { get; private set; }
 
         public TableItem(object[] data, BaseReader br) {
             Image = br.images[(string) data[0]];
@@ -27,6 +30,18 @@ namespace AirportTimeTable.Models {
             BigImage = br.images[(string) data[7]];
             Path = (string) data[8];
             IsDeparture = Path.StartsWith("Новосибирск");
+            Description = ((object[]) data[9]).Select(x => string.Join("\n", ((object[]) x).Cast<string>())).ToArray();
+            Visible = false;
+        }
+
+        private static TableItem? last_opened;
+
+        public void Released() {
+            Visible = !Visible;
+            this.RaisePropertyChanged(nameof(Visible));
+
+            if (last_opened != null && last_opened != this) last_opened.Released();
+            last_opened = Visible ? this : null;
         }
     }
 }

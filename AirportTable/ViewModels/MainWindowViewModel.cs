@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
 using ReactiveUI;
@@ -129,5 +130,9 @@ namespace AirportTable.ViewModels {
         public ReactiveCommand<Unit, Unit> SelectC { get; }
         public ReactiveCommand<Unit, Unit> SelectD { get; }
         public ReactiveCommand<Unit, Unit> SelectE { get; }
+
+        public void Released(object? sender, PointerReleasedEventArgs e) {
+            Log.Write("LOL");
+        }
     }
 }

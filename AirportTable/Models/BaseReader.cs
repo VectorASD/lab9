@@ -1,5 +1,4 @@
 ﻿using AirportTable.Models;
-using AirportTable.ViewModels;
 using Avalonia.Media.Imaging;
 using Microsoft.Data.Sqlite;
 using System;
