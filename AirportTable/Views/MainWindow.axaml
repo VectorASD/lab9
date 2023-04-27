@@ -24,6 +24,21 @@
 					<TextBlock Foreground="#6F788B" FontSize="19" Margin="60 12 0 0" FontWeight="Bold">Вылет</TextBlock>
 				</Canvas>
 			</Button>
+			<Button Width="150" Height="48" CornerRadius="2" Background="#323B44" Padding="0">
+				<Canvas>
+					<Image Source="/Assets/landing_A.png" Width="31" Height="24" Margin="15 10 0 0"/>
+					<TextBlock Foreground="#6F788B" FontSize="19" Margin="60 12 0 0" FontWeight="Bold">Прилёт</TextBlock>
+				</Canvas>
+			</Button>
+			<Canvas Margin="60 19 85 0">
+				<TextBlock Foreground="#8892a5" FontSize="11" FontWeight="UltraBold">Обновить</TextBlock>
+				<Image Source="/Assets/reload.png" Width="15" Height="16" Margin="-19 -1 0 0"/>
+			</Canvas>
+			<Grid ColumnDefinitions="*,*,*" Margin="0 11 14 0">
+				<Button Foreground="#8892a5" Background="#0000" Width="70" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Вчера</Button>
+				<Button Foreground="#8892a5" Background="#0000" Width="90" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1">Сегодня</Button>
+				<Button Foreground="#8892a5" Background="#0000" Width="80" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2">Завтра</Button>
+			</Grid>
 		</StackPanel>
 		<Border Grid.Row="1" Background="Yellow" Padding="15 30 0 4">
 

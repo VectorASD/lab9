@@ -15,6 +15,7 @@
     <None Remove="Assets\departure_B.png" />
     <None Remove="Assets\landing_A.png" />
     <None Remove="Assets\landing_B.png" />
+    <None Remove="Assets\reload.png" />
     <None Remove="Assets\vectorasd-logo.ico" />
   </ItemGroup>
 
