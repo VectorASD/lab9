@@ -15,6 +15,10 @@
     <None Remove="Assets\departure_B.png" />
     <None Remove="Assets\landing_A.png" />
     <None Remove="Assets\landing_B.png" />
+    <None Remove="Assets\Misc\yeah_timetable_вчера.zip" />
+    <None Remove="Assets\Misc\yeah_timetable_завтра.zip" />
+    <None Remove="Assets\Misc\yeah_timetable_сегодня.zip" />
+    <None Remove="Assets\Misc\Воровалка.js" />
     <None Remove="Assets\reload.png" />
     <None Remove="Assets\vectorasd-logo.ico" />
   </ItemGroup>
