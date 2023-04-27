@@ -1,4 +1,3 @@
-using AirportTable.ViewModels;
 using AirportTable.Views;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -12,9 +11,7 @@ namespace AirportTable {
 
         public override void OnFrameworkInitializationCompleted() {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-                desktop.MainWindow = new MainWindow {
-                    DataContext = new MainWindowViewModel(),
-                };
+                desktop.MainWindow = new MainWindow();
             }
 
             base.OnFrameworkInitializationCompleted();
