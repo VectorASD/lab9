@@ -45,13 +45,20 @@ namespace AirportTable.ViewModels {
             Log.Mwvm = this;
             SelectA = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectA(); return new Unit(); });
             SelectB = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectB(); return new Unit(); });
+            SelectC = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectC(); return new Unit(); });
+            SelectD = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectD(); return new Unit(); });
+            SelectE = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectE(); return new Unit(); });
         }
 
-        Button? button_a, button_b;
+        Button? button_a, button_b, button_c, button_d, button_e;
         public void AddWindow(Window mw) {
             button_a = mw.Find<Button>("Button_A");
             button_b = mw.Find<Button>("Button_B");
+            button_c = mw.Find<Button>("Button_C");
+            button_d = mw.Find<Button>("Button_D");
+            button_e = mw.Find<Button>("Button_E");
             SetButtonState(0, true);
+            SetButtonState2(0, true);
         }
 
         private void SetButtonState(int num, bool state) {
@@ -71,6 +78,13 @@ namespace AirportTable.ViewModels {
             var tb = (TextBlock) canvas.Children[1];
             tb.Foreground = new SolidColorBrush(Color.Parse(state ? "#1C242B" : "#6F788B"));
         }
+        private void SetButtonState2(int num, bool state) {
+            var button = num == 0 ? button_c : num == 1 ? button_d : button_e;
+            if (button == null) return;
+            button.Background = new SolidColorBrush(Color.Parse(state ? "#8892a5" : "#0000"));
+            button.Foreground = new SolidColorBrush(Color.Parse(state ? "#fff" : "#8892a5"));
+        }
+
 
         public TableItem[] Items { get => br.data[0].Select(x => new TableItem((object[]) x, br)).ToArray(); }
 
@@ -87,5 +101,20 @@ namespace AirportTable.ViewModels {
         void FuncSelectB() => SelectButton(true);
         public ReactiveCommand<Unit, Unit> SelectA { get; }
         public ReactiveCommand<Unit, Unit> SelectB { get; }
+
+        int selected2 = 0;
+        void SelectButton2(int newy) {
+            if (selected2 == newy) return;
+            selected2 = newy;
+            SetButtonState2(0, newy == 0);
+            SetButtonState2(1, newy == 1);
+            SetButtonState2(2, newy == 2);
+        }
+        void FuncSelectC() => SelectButton2(0);
+        void FuncSelectD() => SelectButton2(1);
+        void FuncSelectE() => SelectButton2(2);
+        public ReactiveCommand<Unit, Unit> SelectC { get; }
+        public ReactiveCommand<Unit, Unit> SelectD { get; }
+        public ReactiveCommand<Unit, Unit> SelectE { get; }
     }
 }

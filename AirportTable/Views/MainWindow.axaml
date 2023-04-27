@@ -42,9 +42,9 @@
 					<Image Source="/Assets/reload.png" Width="15" Height="16" Margin="-19 -1 0 0"/>
 				</Canvas>
 				<Grid ColumnDefinitions="*,*,*" Margin="0 11 14 0">
-					<Button Foreground="#8892a5" Background="#0000" Width="70" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Вчера</Button>
-					<Button Foreground="#8892a5" Background="#0000" Width="90" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1">Сегодня</Button>
-					<Button Foreground="#8892a5" Background="#0000" Width="80" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2">Завтра</Button>
+					<Button Foreground="#8892a5" Background="#0000" CornerRadius="2" Width="70" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Button_C" Command="{Binding SelectC}">Вчера</Button>
+					<Button Foreground="#8892a5" Background="#0000" CornerRadius="2" Width="90" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Button_D" Command="{Binding SelectD}" Grid.Column="1">Сегодня</Button>
+					<Button Foreground="#8892a5" Background="#0000" CornerRadius="2" Width="80" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Button_E" Command="{Binding SelectE}" Grid.Column="2">Завтра</Button>
 				</Grid>
 			</StackPanel>
 			<Border Grid.Row="1" Padding="14 30 0 4" BorderBrush="#5c6576" BorderThickness="0 1">
