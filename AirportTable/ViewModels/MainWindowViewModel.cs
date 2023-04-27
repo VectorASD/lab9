@@ -49,10 +49,17 @@ namespace AirportTable.ViewModels {
             SelectC = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectC(); return new Unit(); });
             SelectD = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectD(); return new Unit(); });
             SelectE = ReactiveCommand.Create<Unit, Unit>(_ => { FuncSelectE(); return new Unit(); });
+            UpdateItems();
         }
 
         string column_text = "Назначение";
         public string ColumnText { get => column_text; set { this.RaiseAndSetIfChanged(ref column_text, value); } }
+
+        private TableItem[] items = Array.Empty<TableItem>();
+        public TableItem[] Items { get => items; set { this.RaiseAndSetIfChanged(ref items, value); } }
+        private void UpdateItems() {
+            Items = br.data[selected2].Select(x => new TableItem((object[]) x, br)).Where(x => x.IsDeparture != selected).ToArray();
+        }
 
 
 
@@ -92,9 +99,6 @@ namespace AirportTable.ViewModels {
         }
 
 
-        public TableItem[] Items { get => br.data[0].Select(x => new TableItem((object[]) x, br)).ToArray(); }
-
-
 
         bool selected = false;
         void SelectButton(bool newy) {
@@ -103,6 +107,7 @@ namespace AirportTable.ViewModels {
             SetButtonState(0, !newy);
             SetButtonState(1, newy);
             ColumnText = newy ? "Пункт вылета" : "Назначение";
+            UpdateItems();
         }
         void FuncSelectA() => SelectButton(false);
         void FuncSelectB() => SelectButton(true);
@@ -116,6 +121,7 @@ namespace AirportTable.ViewModels {
             SetButtonState2(0, newy == 0);
             SetButtonState2(1, newy == 1);
             SetButtonState2(2, newy == 2);
+            UpdateItems();
         }
         void FuncSelectC() => SelectButton2(0);
         void FuncSelectD() => SelectButton2(1);
