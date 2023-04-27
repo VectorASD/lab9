@@ -58,7 +58,7 @@ namespace AirportTable.ViewModels {
         private TableItem[] items = Array.Empty<TableItem>();
         public TableItem[] Items { get => items; set { this.RaiseAndSetIfChanged(ref items, value); } }
         private void UpdateItems() {
-            Items = br.data[selected2].Where(x => x.IsDeparture != selected).ToArray();
+            Items = br.GetItems(selected, selected2);
         }
 
 

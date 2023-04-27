@@ -1,4 +1,5 @@
 ﻿using AirportTable.Models;
+using AirportTable.ViewModels;
 using Avalonia.Media.Imaging;
 using Microsoft.Data.Sqlite;
 using System;
@@ -42,8 +43,17 @@ namespace AirportTimeTable.Models {
         }
 
         // Рандомит некоторые вещи, связанные с текущим временем ;'-}
+        long days_offset = 0;
         public void TimeBomb() {
+            var dt = new DateTime();
+            var delta = new DateTime(1970, 1, 1, 0, 0, 0) - dt;
+            days_offset = (long) delta.TotalDays - 719161;
+            // Log.Write("d: " + days_offset);
+        }
 
+        public TableItem[] GetItems(bool selected, int selected2) {
+            TimeBomb();
+            return data[(selected2 + days_offset) % 4].Where(x => x.IsDeparture != selected).ToArray();
         }
     }
 }
