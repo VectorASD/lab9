@@ -40,10 +40,17 @@
 				<Button Foreground="#8892a5" Background="#0000" Width="80" Height="28" Padding="0" FontSize="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2">Завтра</Button>
 			</Grid>
 		</StackPanel>
-		<Border Grid.Row="1" Background="Yellow" Padding="15 30 0 4">
-
+		<Border Grid.Row="1" Padding="14 30 0 4" BorderBrush="#5c6576" BorderThickness="0 1"> <!-- Не могу выставить border только снизу, как в оригинальном CSS со страницы... -->
+			<Grid ColumnDefinitions="123*,157*,80*,52*,51*,136*">
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center">Рейс</TextBlock>
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="1">Название</TextBlock>
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="2">По расписанию</TextBlock>
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="3">Расчётное</TextBlock>
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="4">Сектор</TextBlock>
+				<TextBlock Foreground="#8892a5" FontSize="11" Height="16" VerticalAlignment="Center" Grid.Column="5">Статус</TextBlock>
+			</Grid>
 		</Border>
-		<Border Grid.Row="2" Background="Green">
+		<Border Grid.Row="2">
 
 		</Border>
 	</Grid>
