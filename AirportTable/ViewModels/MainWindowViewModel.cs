@@ -130,9 +130,5 @@ namespace AirportTable.ViewModels {
         public ReactiveCommand<Unit, Unit> SelectC { get; }
         public ReactiveCommand<Unit, Unit> SelectD { get; }
         public ReactiveCommand<Unit, Unit> SelectE { get; }
-
-        public void Released(object? sender, PointerReleasedEventArgs e) {
-            Log.Write("LOL");
-        }
     }
 }
