@@ -48,7 +48,13 @@ namespace AirportTimeTable.Models {
             var dt = DateTime.Now;
             var delta = dt - new DateTime(1970, 1, 1, 0, 0, 0);
             days_offset = (long) delta.TotalDays - 19474;
-            // Log.Write("d: " + days_offset);
+            // Log.Write("days: " + days_offset + " mins: " + delta.TotalMinutes % (24 * 60));
+            int num_day = 0;
+            int mins_offset = (int) (days_offset * 24 * 60 + delta.TotalMinutes) % (4 * 24 * 60);
+            foreach (var day in data) {
+                foreach (var line in day) line.RecalcTime(num_day, mins_offset);
+                num_day++;
+            }
         }
 
         public TableItem[] GetItems(bool selected, int selected2) {
