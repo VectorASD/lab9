@@ -51,7 +51,7 @@ namespace AirportTimeTable.Models {
             var t_arr = TimeCount.Split(':');
             int minutes = (num_day * 24 + int.Parse(t_arr[0])) * 60 + int.Parse(t_arr[1]);
             int delta = minutes - mins_offset;
-            if (delta > 2 * 24 * 60) delta -= 4 * 24 * 60;
+            if (delta > 2 * 24 * 60) delta -= BaseReader.days_num * 24 * 60;
 
             /*
             Прошлое: По сути 20-25 минуты выделяется на то, чтобы челик после "Посадка завершена" ещё мог успеть до "Вылетел"

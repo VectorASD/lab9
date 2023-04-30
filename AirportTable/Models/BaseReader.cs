@@ -1,5 +1,4 @@
 ﻿using AirportTable.Models;
-using AirportTable.ViewModels;
 using Avalonia.Media.Imaging;
 using Microsoft.Data.Sqlite;
 using System;
@@ -11,6 +10,7 @@ namespace AirportTimeTable.Models {
     public class BaseReader {
         public TableItem[][] data = Array.Empty<TableItem[]>();
         public Dictionary<string, Bitmap> images = new();
+        public const int days_num = 6;
 
         public BaseReader() {
             string path = (Directory.GetCurrentDirectory().Contains("AirportTable") ? "../../.." : "AirportTable") + "/Assets/Misc/storage.db";
@@ -30,8 +30,8 @@ namespace AirportTimeTable.Models {
             using var reader = new SqliteCommand("SELECT * FROM content", con).ExecuteReader();
             if (!reader.HasRows) return;
 
-            var res = new List<TableItem>[4];
-            for (int i = 0; i < 4; i++) res[i] = new();
+            var res = new List<TableItem>[days_num];
+            for (int i = 0; i < days_num; i++) res[i] = new();
 
             while (reader.Read()) {
                 var row = Enumerable.Range(0, reader.VisibleFieldCount).Select(x => reader[x]).ToArray();
@@ -50,7 +50,7 @@ namespace AirportTimeTable.Models {
             days_offset = (long) delta.TotalDays - 19474;
             // Log.Write("days: " + days_offset + " mins: " + delta.TotalMinutes % (24 * 60));
             int num_day = 0;
-            int mins_offset = (int) (days_offset * 24 * 60 + delta.TotalMinutes) % (4 * 24 * 60);
+            int mins_offset = (int) (days_offset * 24 * 60 + delta.TotalMinutes) % (days_num * 24 * 60);
             foreach (var day in data) {
                 foreach (var line in day) line.RecalcTime(num_day, mins_offset);
                 num_day++;
@@ -59,7 +59,7 @@ namespace AirportTimeTable.Models {
 
         public TableItem[] GetItems(bool selected, int selected2) {
             TimeBomb();
-            return data[(selected2 + days_offset) % 4].Where(x => x.IsDeparture != selected).ToArray();
+            return data[(selected2 + days_offset) % days_num].Where(x => x.IsDeparture != selected).ToArray();
         }
     }
 }

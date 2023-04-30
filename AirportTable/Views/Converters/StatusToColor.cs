@@ -7,7 +7,7 @@ namespace AirportTimeTable.Views.Converters {
     internal class StatusToColor: IValueConverter {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
             if (value is not string @str) throw new ArgumentException("Не тот тип: " + value);
-            return str switch {
+            return @str switch {
                 "Отменён" => Brushes.Red,
                 "Задерживается" => Brushes.Yellow,
                 _ => Brushes.White,
